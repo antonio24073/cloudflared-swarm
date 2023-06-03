@@ -1,0 +1,5 @@
+domains/*
+!domains/domain.com
+!domains/domain.com/*
+env/*
+!env/.env.dc

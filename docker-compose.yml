@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  tunnel:
+    # image: cloudflare/cloudflared
+    image: antonio24073/cloudflared:1.0
+    user: root
+    hostname: tunnel_${STACK}
+    # command: tunnel --no-autoupdate run ${DOMAIN}
+    entrypoint: tail -f /dev/null
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./domains/${DOMAIN}/hosts:/etc/hosts:ro
+      - ./domains/${DOMAIN}/.cloudflared:/root/.cloudflared
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 384M
+        reservations:
+          cpus: '0.125'
+          memory: 192M

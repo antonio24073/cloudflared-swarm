@@ -1,0 +1,11 @@
+url: http://domain.com
+tunnel: uuid
+credentials-file: /root/.cloudflared/uuid.json
+
+ingress:
+  - hostname: subdomain.domain.com
+    service: http://subdomain.domain.com
+    originRequest:
+      connectTimeout: 180s
+      noTLSVerify: true
+  - service: http_status:404
